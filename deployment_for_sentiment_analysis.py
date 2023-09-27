@@ -11,7 +11,7 @@ st.title("DIGITAL GREEN CROP YIELD PREDICTION")
 st.markdown("TEAM 2")
 
 st.subheader("Enter the required input data:")
-user_input = st.text_input('Enter data:', 'Default Input')
+user_input = st.text_input('Enter data:')
 predict_button = st.button('Predict')
 
 if predict_button:
@@ -22,7 +22,7 @@ if predict_button:
 
         # Use the model to make a crop yield prediction
         # Replace this line with your actual prediction code for your model
-        predicted_yield = rf_model.predict(processed_data)
+        predicted_yield = rf_model.predict(X_test)
         
         # Display the prediction
         st.header("Crop Yield Prediction:")
