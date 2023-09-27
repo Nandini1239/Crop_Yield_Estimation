@@ -5,7 +5,7 @@ import numpy as np
 
 # Load your trained model
 rf_model = RandomForestRegressor()
-rf_model.load('your_trained_model.pkl')
+rf_model.load('svm_model.pkl')
 
 st.title("DIGITAL GREEN CROP YIELD PREDICTION")
 st.markdown("TEAM 2")
