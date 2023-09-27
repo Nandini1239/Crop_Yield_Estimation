@@ -44,15 +44,9 @@ image = Image.open("crop.jpg")
 st.image(image, use_column_width=True)
 
 st.subheader("Enter your ID here:")
-user_input = st.text_area("")
 
-if user_input:
-    user_input = clean_text(user_input)
-    user_input = remove_punctuation(user_input)
-    user_input = user_input.lower()
-    user_input = tokenization(user_input)
-    user_input = remove_stopwords(user_input)
-    user_input = lemmatizer(user_input)
+user_input = st.text_input('Enter ID:', 'Default ID')
+predict_button = st.button('Predict')
 
 if predict_button:
     if user_input:
