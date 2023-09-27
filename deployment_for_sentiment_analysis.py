@@ -7,7 +7,7 @@ import string
 import nltk
 import  spacy
 
-with open("svm_model.pkl", "rb") as file:
+with open("crop_yield_rf_model.pkl", "rb") as file:
     model = pickle.load(file)
 
 with open("tfidf_vectorizer.pkl", "rb") as file:
