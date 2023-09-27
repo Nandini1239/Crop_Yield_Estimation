@@ -4,8 +4,8 @@ from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 
 # Load your trained model
-rf_model = RandomForestRegressor()
-rf_model.load('svm_model.pkl')
+with open("svm_model.pkl", "rb") as file:
+    rf_model = joblib.load(file)
 
 st.title("DIGITAL GREEN CROP YIELD PREDICTION")
 st.markdown("TEAM 2")
