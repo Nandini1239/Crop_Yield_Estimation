@@ -1,44 +1,31 @@
 import streamlit as st
-import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
-from PIL import Image
-import re
-import string
-import nltk
-import  spacy
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+import numpy as np
 
-with open("svm_model.pkl", "rb") as file:
-    model = pickle.load(file)
-
-with open("tfidf_vectorizer.pkl", "rb") as file:
-    vectorizer = pickle.load(file)
+# Load your trained model
+rf_model = RandomForestRegressor()
+rf_model.load('your_trained_model.pkl')
 
 st.title("DIGITAL GREEN CROP YIELD PREDICTION")
 st.markdown("TEAM 2")
-image = Image.open("crop.jpg")
-st.image(image, use_column_width=True)
 
-st.subheader("Enter your ID here:")
-
-user_input = st.text_input('Enter ID:', 'Default ID')
+st.subheader("Enter the required input data:")
+user_input = st.text_input('Enter data:', 'Default Input')
 predict_button = st.button('Predict')
 
 if predict_button:
     if user_input:
-        # Retrieve the data for the given ID (replace with your data retrieval code)
-        # You may need to load the relevant data from your dataset based on the ID
-        # Make sure to preprocess the data to match the format expected by your model
-        
-        # Example data retrieval and preprocessing (replace with your actual code)
-        # data = retrieve_data_by_id(user_input)
-        # processed_data = preprocess_data(data)
-        
+        # Preprocess the user's input data (similar to how you preprocessed training data)
+        # Example preprocessing (replace with your actual preprocessing code)
+        # processed_data = preprocess_user_input(user_input)
+
         # Use the model to make a crop yield prediction
-        # Replace this line with the actual prediction code for your model
-        y_predict = model.predict(X_test)  # Replace X_test with your processed data
+        # Replace this line with your actual prediction code for your model
+        predicted_yield = rf_model.predict(processed_data)
         
         # Display the prediction
         st.header("Crop Yield Prediction:")
-        st.subheader(f"The predicted yield for ID {user_input} is: {y_predict[0]} tons/acre")
+        st.subheader(f"The predicted yield is: {predicted_yield[0]} tons/acre")
     else:
-        st.subheader("Please enter an ID for prediction.")
+        st.subheader("Please enter input data for prediction.")
