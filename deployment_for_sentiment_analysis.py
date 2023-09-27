@@ -26,6 +26,6 @@ if predict_button:
         
         # Display the prediction
         st.header("Crop Yield Prediction:")
-        st.subheader(f"The predicted yield is: {predicted_yield[0]} tons/acre")
+        st.subheader(f"The predicted yield is: {y_predict[0]} tons/acre")
     else:
         st.subheader("Please enter input data for prediction.")
