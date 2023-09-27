@@ -1,16 +1,58 @@
-import pandas as pd
 import streamlit as st
-import joblib
+import pickle
+from sklearn.feature_extraction.text import TfidfVectorizer
+from PIL import Image
+import re
+import string
+import nltk
+import  spacy
 
-# Load your trained model (replace 'your_model.pkl' with the actual path)
-model = joblib.load('your_model.pkl')
+with open("svm_model.pkl", "rb") as file:
+    model = pickle.load(file)
 
-# Streamlit UI
-st.title('Crop Yield Prediction App')
+with open("tfidf_vectorizer.pkl", "rb") as file:
+    vectorizer = pickle.load(file)
 
-# Input for ID
-user_input = st.text_input('Enter ID:', 'Default ID')
-predict_button = st.button('Predict')
+nltk.download('stopwords')
+stopwords = nltk.corpus.stopwords.words('english')
+
+def clean_text(text):
+    text = text.lower()
+    return text.strip()
+
+def remove_punctuation(text):
+    punctuation_free = "".join([i for i in text if i not in string.punctuation])
+    return punctuation_free
+
+def tokenization(text):
+    tokens = re.split(' ', text)
+    return tokens
+
+def remove_stopwords(text):
+    output = " ".join(i for i in text if i not in stopwords)
+    return output
+
+def lemmatizer(text):
+    nlp = spacy.load('en_core_web_sm')
+    doc = nlp(text)
+    sent = [token.lemma_ for token in doc if not token.text in set(stopwords)]
+    return ' '.join(sent)
+
+st.title("DIGITAL GREEN CROP YIELD PREDICTION")
+st.markdown("TEAM 2")
+image = Image.open("crop.jpg")
+st.image(image, use_column_width=True)
+
+st.subheader("Enter your ID here:")
+user_input = st.text_area("")
+
+if user_input:
+    user_input = clean_text(user_input)
+    user_input = remove_punctuation(user_input)
+    user_input = user_input.lower()
+    user_input = tokenization(user_input)
+    user_input = remove_stopwords(user_input)
+    user_input = lemmatizer(user_input)
 
 if predict_button:
     if user_input:
