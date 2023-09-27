@@ -42,7 +42,7 @@ def lemmatizer(text):
 
 st.title("DIGITAL GREEN CROP YIELD PREDICTION")
 st.markdown("TEAM 2")
-image = Image.open("crop.jpeg")
+image = Image.open("crop.jpg")
 st.image(image, use_column_width=True)
 
 st.subheader("Enter your ID here:")
