@@ -60,7 +60,7 @@ if st.button("Predict"):
     if predict_button:
         if user_input:
             st.header("Crop Yield Prediction:")
-            st.subheader(f"The predicted yield for ID {user_input} is: {y_predict} tons/acre")
+            st.subheader(f"The predicted yield for ID {user_input} is: {X_test} tons/acre")
         else:
             st.subheader("Please enter an ID for prediction.")
         # Retrieve the data for the given ID (replace with your data retrieval code)
