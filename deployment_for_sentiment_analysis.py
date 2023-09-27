@@ -58,7 +58,11 @@ if user_input:
 
 if st.button("Predict"):
     if predict_button:
-    if user_input:
+        if user_input:
+            st.header("Crop Yield Prediction:")
+            st.subheader(f"The predicted yield for ID {user_input} is: {prediction} tons/acre")
+        else:
+            st.subheader("Please enter an ID for prediction.")
         # Retrieve the data for the given ID (replace with your data retrieval code)
         # You may need to load the relevant data from your dataset based on the ID
         # Make sure to preprocess the data to match the format expected by your model
@@ -72,10 +76,6 @@ if st.button("Predict"):
         # prediction = model.predict(processed_data)[0]
         
         # Display the prediction (replace with appropriate output)
-        st.header("Crop Yield Prediction:")
-        st.subheader(f"The predicted yield for ID {user_input} is: {prediction} tons/acre")
-    else:
-        st.subheader("Please enter an ID for prediction.")
 
 
 
